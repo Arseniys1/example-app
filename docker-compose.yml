@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-octane-app
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+            - ./docker/php/conf.d/octane.ini:/usr/local/etc/php/conf.d/octane.ini
+        environment:
+            - OCTANE_SERVER=swoole
+            - OCTANE_WORKERS=auto
+            - OCTANE_TASK_WORKERS=auto
+        networks:
+            - laravel-network
+        depends_on:
+            - mysql
+        ports:
+            - "8000:8000"
+
+    mysql:
+        image: mysql:9.1.0
+        container_name: laravel-mysql
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+            MYSQL_USER: ${DB_USERNAME:-laravel}
+        volumes:
+            - mysql_data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        networks:
+            - laravel-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin_container
+        restart: always
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+            PHP_UPLOAD_MAX_FILESIZE: "100M"
+            PHP_MAX_EXECUTION_TIME: "300"
+            UPLOAD_LIMIT: "100M"
+            MAX_EXECUTION_TIME: "300"
+        depends_on:
+            - mysql
+        networks:
+            - laravel-network
+
+volumes:
+    mysql_data:
+        driver: local
+    redis_data:
+        driver: local
+
+networks:
+    laravel-network:
+        driver: bridge
