@@ -12,9 +12,10 @@ services:
             - .:/var/www
             - ./docker/php/conf.d/octane.ini:/usr/local/etc/php/conf.d/octane.ini
         environment:
-            - OCTANE_SERVER=swoole
-            - OCTANE_WORKERS=auto
-            - OCTANE_TASK_WORKERS=auto
+            OCTANE_SERVER: swoole
+            OCTANE_WORKERS: auto
+            OCTANE_TASK_WORKERS: auto
+            SECRET_KEY: ${SECRET_KEY:-secret}
         networks:
             - laravel-network
         depends_on:
