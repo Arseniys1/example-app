@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApiRequest;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function __construct(private OrderService $orderService) {}
 
-    public function get(Request $request): JsonResponse
+    public function get(ApiRequest $request): JsonResponse
     {
-        $limit = $request->get('limit', 500);
+        $validated = $request->validated();
+        $limit = $validated['limit'] ?? 500;
 
-        $orders = $this->orderService->getPaginatedOrders($request->all(), $limit);
+        $orders = $this->orderService->getPaginatedOrders($validated, $limit);
 
         return response()->json([
             'success' => true,

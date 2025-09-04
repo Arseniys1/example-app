@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApiRequest;
 use App\Services\ProfitService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ProfitController extends Controller
 {
     public function __construct(private ProfitService $profitService) {}
 
-    public function get(Request $request): JsonResponse
+    public function get(ApiRequest $request): JsonResponse
     {
-        $limit = $request->get('limit', 500);
+        $validated = $request->validated();
+        $limit = $validated['limit'] ?? 500;
 
-        $profits = $this->profitService->getPaginatedProfits($request->all(), $limit);
+        $profits = $this->profitService->getPaginatedProfits($validated, $limit);
 
         return response()->json([
             'success' => true,
