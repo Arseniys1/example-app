@@ -23,7 +23,6 @@ class Order extends Model
         'final_amount',
         'status',
         'notes',
-        'order_date'
     ];
 
     protected $casts = [
@@ -31,7 +30,6 @@ class Order extends Model
         'discount_amount' => 'decimal:2',
         'tax_amount' => 'decimal:2',
         'final_amount' => 'decimal:2',
-        'order_date' => 'datetime'
     ];
 
     public function warehouse(): BelongsTo

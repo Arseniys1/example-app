@@ -19,14 +19,12 @@ class Sale extends Model
         'profit',
         'payment_status',
         'payment_method',
-        'sale_date'
     ];
 
     protected $casts = [
         'amount' => 'decimal:2',
         'cost' => 'decimal:2',
         'profit' => 'decimal:2',
-        'sale_date' => 'datetime'
     ];
 
     public function order(): BelongsTo

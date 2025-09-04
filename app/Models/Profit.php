@@ -15,7 +15,6 @@ class Profit extends Model
         'amount',
         'tax_amount',
         'net_amount',
-        'revenue_date',
         'type',
         'description'
     ];
@@ -24,7 +23,6 @@ class Profit extends Model
         'amount' => 'decimal:2',
         'tax_amount' => 'decimal:2',
         'net_amount' => 'decimal:2',
-        'revenue_date' => 'date'
     ];
 
     public function sale(): BelongsTo

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->decimal('profit', 10, 2)->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'partial', 'refunded'])->default('pending');
             $table->enum('payment_method', ['cash', 'card', 'transfer'])->nullable();
-            $table->timestamp('sale_date')->useCurrent();
             $table->timestamps();
         });
     }

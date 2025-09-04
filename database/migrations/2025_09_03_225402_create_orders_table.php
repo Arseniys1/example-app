@@ -24,7 +24,6 @@ return new class extends Migration
             $table->decimal('final_amount', 12, 2);
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->text('notes')->nullable();
-            $table->timestamp('order_date')->useCurrent();
             $table->timestamps();
         });
     }

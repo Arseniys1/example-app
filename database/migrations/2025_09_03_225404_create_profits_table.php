@@ -17,7 +17,6 @@ return new class extends Migration
             $table->decimal('amount', 12, 2);
             $table->decimal('tax_amount', 10, 2)->default(0);
             $table->decimal('net_amount', 12, 2);
-            $table->date('revenue_date');
             $table->enum('type', ['sale', 'refund', 'other'])->default('sale');
             $table->text('description')->nullable();
             $table->timestamps();
