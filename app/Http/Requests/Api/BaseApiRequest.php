@@ -19,7 +19,7 @@ abstract class BaseApiRequest extends FormRequest
         return [
             'dateFrom' => ['required', 'date_format:Y-m-d H:i:s,Y-m-d'],
             'page' => ['nullable', 'integer', 'min:1'],
-            'limit' => ['nullable', 'integer', 'min:1', 'max:500'],
+            'limit' => ['nullable', 'integer', 'min:1', 'max:' . config('app.api_limit', 500)],
         ];
     }
 }

@@ -14,7 +14,7 @@ class SaleController extends Controller
     public function get(ApiRequest $request): JsonResponse
     {
         $validated = $request->validated();
-        $limit = $validated['limit'] ?? 500;
+        $limit = $validated['limit'] ?? config('app.api_limit', 500);
 
         $sales = $this->saleService->getPaginatedSales($validated, $limit);
 
