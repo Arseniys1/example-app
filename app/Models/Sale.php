@@ -13,7 +13,7 @@ class Sale extends Model
 
     protected $fillable = [
         'order_id',
-        'income_id',
+        'warehouse_id',
         'amount',
         'cost',
         'profit',
@@ -34,13 +34,13 @@ class Sale extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function income(): BelongsTo
+    public function warehouse(): BelongsTo
     {
-        return $this->belongsTo(Income::class);
+        return $this->belongsTo(Warehouse::class);
     }
 
-    public function stock(): HasOne
+    public function profit(): HasOne
     {
-        return $this->hasOne(Stock::class);
+        return $this->hasOne(Profit::class);
     }
 }

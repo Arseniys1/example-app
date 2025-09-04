@@ -13,7 +13,7 @@ class Order extends Model
 
     protected $fillable = [
         'order_number',
-        'income_id',
+        'warehouse_id',
         'customer_name',
         'customer_phone',
         'customer_address',
@@ -34,9 +34,9 @@ class Order extends Model
         'order_date' => 'datetime'
     ];
 
-    public function income(): BelongsTo
+    public function warehouse(): BelongsTo
     {
-        return $this->belongsTo(Income::class);
+        return $this->belongsTo(Warehouse::class);
     }
 
     public function sale(): HasOne
