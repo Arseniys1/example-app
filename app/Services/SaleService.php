@@ -11,7 +11,7 @@ class SaleService
         private SaleRepositoryInterface $saleRepository
     ) {}
 
-    public function getPaginatedSales(array $filters = [], int $page = 0, int $limit = 500): LengthAwarePaginator
+    public function getPaginatedSales(array $filters = [], int $page = 1, int $limit = 500): LengthAwarePaginator
     {
         return $this->saleRepository->getPaginated($filters, $page, $limit);
     }

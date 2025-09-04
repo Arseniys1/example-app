@@ -13,7 +13,7 @@ class WarehouseController extends Controller
 
     public function get(Request $request): JsonResponse
     {
-        $page = $request->get('limit', 0);
+        $page = $request->get('page', 1);
         $limit = $request->get('limit', 500);
 
         $warehouses = $this->warehouseService->getPaginatedWarehouses($request->all(), $page, $limit);

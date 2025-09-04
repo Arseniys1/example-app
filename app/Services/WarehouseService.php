@@ -11,7 +11,7 @@ class WarehouseService
         private WarehouseRepositoryInterface $warehouseRepository
     ) {}
 
-    public function getPaginatedWarehouses(array $filters = [], int $page = 0, int $limit = 500): LengthAwarePaginator
+    public function getPaginatedWarehouses(array $filters = [], int $page = 1, int $limit = 500): LengthAwarePaginator
     {
         return $this->warehouseRepository->getPaginated($filters, $page, $limit);
     }
