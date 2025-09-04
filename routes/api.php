@@ -11,7 +11,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/stocks', [ProfitController::class, 'get']);
-Route::get('/incomes', [WarehouseController::class, 'get']);
-Route::get('/sales', [SaleController::class, 'get']);
-Route::get('/orders', [OrderController::class, 'get']);
+Route::middleware(['getCheckKeyMiddleware'])->group(function () {
+    Route::get('/stocks', [ProfitController::class, 'get']);
+    Route::get('/incomes', [WarehouseController::class, 'get']);
+    Route::get('/sales', [SaleController::class, 'get']);
+    Route::get('/orders', [OrderController::class, 'get']);
+});
