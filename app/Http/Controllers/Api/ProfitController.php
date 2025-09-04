@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ApiRequest;
+use App\Http\Requests\Api\ApiRequest;
 use App\Services\ProfitService;
 use Illuminate\Http\JsonResponse;
 
