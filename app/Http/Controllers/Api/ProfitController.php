@@ -13,10 +13,9 @@ class ProfitController extends Controller
 
     public function get(Request $request): JsonResponse
     {
-        $page = $request->get('page', 1);
         $limit = $request->get('limit', 500);
 
-        $profits = $this->profitService->getPaginatedProfits($request->all(), $page, $limit);
+        $profits = $this->profitService->getPaginatedProfits($request->all(), $limit);
 
         return response()->json([
             'success' => true,

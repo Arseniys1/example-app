@@ -11,8 +11,8 @@ class OrderService
         private OrderRepositoryInterface $orderRepository
     ) {}
 
-    public function getPaginatedOrders(array $filters = [], int $page = 1, int $limit = 500): LengthAwarePaginator
+    public function getPaginatedOrders(array $filters = [], int $limit = 500): LengthAwarePaginator
     {
-        return $this->orderRepository->getPaginated($filters, $page, $limit);
+        return $this->orderRepository->getPaginated($filters, $limit);
     }
 }

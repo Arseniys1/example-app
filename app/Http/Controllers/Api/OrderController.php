@@ -13,10 +13,9 @@ class OrderController extends Controller
 
     public function get(Request $request): JsonResponse
     {
-        $page = $request->get('page', 1);
         $limit = $request->get('limit', 500);
 
-        $orders = $this->orderService->getPaginatedOrders($request->all(), $page, $limit);
+        $orders = $this->orderService->getPaginatedOrders($request->all(), $limit);
 
         return response()->json([
             'success' => true,

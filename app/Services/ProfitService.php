@@ -11,8 +11,8 @@ class ProfitService
         private ProfitRepositoryInterface $profitRepository
     ) {}
 
-    public function getPaginatedProfits(array $filters = [], int $page = 1, int $limit = 500): LengthAwarePaginator
+    public function getPaginatedProfits(array $filters = [], int $limit = 500): LengthAwarePaginator
     {
-        return $this->profitRepository->getPaginated($filters, $page, $limit);
+        return $this->profitRepository->getPaginated($filters, $limit);
     }
 }
