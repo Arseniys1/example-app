@@ -15,7 +15,7 @@ class WarehouseRepository implements WarehouseRepositoryInterface
     {
         $query = Warehouse::query();
 
-        $query = $this->applyDateFilters($query, $filters);
+        $query = $this->applyDateFilterOnlyCurrentDay($query, $filters);
 
         return $query->orderBy('created_at', 'desc')->paginate($limit);
     }
