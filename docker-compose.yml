@@ -10,6 +10,8 @@ services:
         working_dir: /var/www
         volumes:
             - .:/var/www
+            - /var/www/storage
+            - /var/www/bootstrap/cache
             - ./docker/php/conf.d/octane.ini:/usr/local/etc/php/conf.d/octane.ini
         environment:
             OCTANE_SERVER: swoole
